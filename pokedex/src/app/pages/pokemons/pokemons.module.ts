@@ -6,6 +6,7 @@ import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
 import { PokemonsRoutingModule } from './pokemons-list-routing.module';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [
-    PokemonsListComponent
+    PokemonsListComponent,
+    HeaderComponent
   ],
   providers: [
     PokemonService

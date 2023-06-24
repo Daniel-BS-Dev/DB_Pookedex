@@ -1,9 +1,9 @@
-export interface Pokemon {
+export interface PokemonModel {
   name: string;
   url: string;
 }
 
 export interface PokemonList {
-  results: Pokemon[];
+  results: PokemonModel[];
   count: number;
 }

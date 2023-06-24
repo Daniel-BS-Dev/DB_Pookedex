@@ -1,4 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
+$grass: #3e9709;
+$grass-light: #7eb95b;
+$fire: #fc0c0b;
+$fire-light: #fd5d5c;
+$water: #0a7abc;
+$water-light: #5ba6d2;
+$normal: #ccc9aa;
+$normal-light: #dddbc6;
+$flying: #5eb9b2;
+$flying-light: #93d0cb;
+$bug: #91ba2e;
+$bug-light: #bddd6e;
+$poison: #a819d7;
+$poison-light: #c565e4;
+$electric: #ffd700;
+$electric-light: #fffb6d;
+$ground: #e1d158;
+$ground-light: #ede293;
+$fighting: #e81319;
+$fighting-light: #ef6165;
+$psychic: #ec0e63;
+$psychic-light: #f55792;
+$rock: #776a3e;
+$rock-light: #94834f;
+$ice: #1995a1;
+$ice-light: #65b8c0;
+$ghost: #8e55a4;
+$ghost-light: #b38dc2;
+$dragon: #8a55fd;
+$dragon-light: #b18dfd;
+$dark: #5f4632;
+$dark-light: #916852;
+$steel: #7b8e8a;
+$steel-light: #bbc5c4;
+$fairy: #ffa0c2;
+$fairy-light: #fdd1e0;
+
+$gray-light: #d8d8d8;
+$gray-dark: #606060;
+$gray: #b6b6b6;
+
+$transparent: transparent;
+$black: #000000;
+$white: #ffffff;
+$general: (
+  ("black", $black),
+  ("white", $white),
+  ("grass", $grass),
+  ("grass-light", $grass-light),
+  ("fire", $fire),
+  ("fire-light", $fire-light),
+  ("water", $water),
+  ("water-light", $water-light),
+  ("normal", $normal),
+  ("normal-light", $normal-light),
+  ("flying", $flying),
+  ("flying-light", $flying-light),
+  ("bug", $bug),
+  ("bug-light", $bug-light),
+  ("poison", $poison),
+  ("poison-light", $poison-light),
+  ("electric", $electric),
+  ("electric-light", $electric-light),
+  ("ground", $ground),
+  ("ground-light", $ground-light),
+  ("fighting", $fighting),
+  ("fighting-light", $fighting-light),
+  ("psychic", $psychic),
+  ("psychic-light", $psychic-light),
+  ("rock", $rock),
+  ("rock-light", $rock-light),
+  ("ice", $ice),
+  ("ice-light", $ice-light),
+  ("ghost", $ghost),
+  ("ghost-light", $ghost-light),
+  ("dragon", $dragon),
+  ("dragon-light", $dragon-light),
+  ("dark", $dark),
+  ("dark-light", $dark-light),
+  ("steel", $steel),
+  ("steel-light", $steel-light),
+  ("fairy", $fairy),
+  ("fairy-light", $fairy-light),
+  ("gray", $gray)
+);
+
+@each $color in $general {
+  $name: nth($color, 1);
+  $value: nth($color, 2);
+
+  .bg-color-#{$name} {
+    background-color: $value !important;
+  }
+
+  .color-#{$name} {
+    color: $value !important;
+  }
+}
 
 * {
   font-family: "Maven Pro", Roboto;

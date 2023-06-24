@@ -1,4 +1,6 @@
-export interface PokemonDetail {
+import { PokemonModel } from "./pokemonsList";
+
+export interface PokemonDetailModel {
   id: number;
   order: number;
   name: string;
@@ -22,7 +24,7 @@ interface Species {
 
 interface Type {
   slot: number;
-  type:  string;
+  type: PokemonModel;
 }
 
 interface Sprite {

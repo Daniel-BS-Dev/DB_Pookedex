@@ -1,0 +1,45 @@
+.card {
+    min-width: 310px;
+    max-width: 370px;
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    height: 200px;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(0.8);
+    }
+
+    .cardinfo {
+      width: 50%;
+      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      text-transform: capitalize;
+      padding: 15px;
+      font-weight: 700;
+      font-size: 1.5em;
+
+      span {
+        border-radius: 40px;
+        text-align: center;
+        margin-top: 10px;
+        font-size: .6em;
+        font-weight: 600;
+      }
+    }
+
+    .cardimg {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url(../../../../../assets/images/pokeball-background-listagem.svg);
+      background-repeat: no-repeat;
+      background-size: 90%;
+      background-position: 50% 50%;
+    }
+  }

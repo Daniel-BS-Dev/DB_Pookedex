@@ -7,6 +7,7 @@ import { PokemonsRoutingModule } from './pokemons-list-routing.module';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   declarations: [
     PokemonsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    CardComponent
   ],
   providers: [
     PokemonService

@@ -1,6 +1,11 @@
 <main>
   <app-header></app-header>
 
+  <article class="container-card">
+    <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon">
+    </app-card>
+  </article>
+
   <footer>
     <small>&copy;
       2023 Daniel Benedito. Todos os direitos reservados.

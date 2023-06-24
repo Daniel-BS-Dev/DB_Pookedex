@@ -1,0 +1,17 @@
+<section class="card {{'bg-color-'+ getPrincipalType(pokemon.types) + '-light'}}" matTooltipPosition="above"
+  matTooltip="Clique para ver detalhes.">
+
+  <article class="cardinfo">
+    <p class="mb-5">{{ pokemon.name }}</p>
+    <span *ngFor="let p of pokemon.types" class="{{'bg-color-' + getPrincipalType(pokemon.types)}}">
+      {{ p.type.name }}
+    </span>
+  </article>
+
+  <article class="cardimg">
+    <img *ngIf="classicMode" [src]="pokemon.sprites.front_default" [alt]="pokemon.name" appHasErrorImage>
+    <img *ngIf="!classicMode" src="https://projectpokemon.org/images/normal-sprite/{{pokemon.name}}.gif"
+      [alt]="pokemon.name" appHasErrorImage>
+  </article>
+
+</section>

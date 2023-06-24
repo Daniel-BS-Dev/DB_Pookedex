@@ -1,22 +1,18 @@
-import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
-import { PokemonService } from 'src/app/services/pokemon.service';
-import { PokemonList } from 'src/app/models/pokemonsList';
+import { PokemonsListStore } from './pokemons-list.store';
 
 @Component({
   selector: 'app-pokemons-list',
   templateUrl: './pokemons-list.component.html',
-  styleUrls: ['./pokemons-list.component.scss']
+  styleUrls: ['./pokemons-list.component.scss'],
+  providers: [PokemonsListStore]
 })
 export class PokemonsListComponent {
 
-  pokemons$!: Observable<PokemonList>
-
-  constructor(private service: PokemonService) { }
+  constructor(public pokedexListStore: PokemonsListStore) { }
 
   ngOnInit(): void {
-    this.pokemons$ = this.service.getPokemonList(0, 20);
-
+   this.pokedexListStore.getPokemonsList();
   }
 
 }

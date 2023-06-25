@@ -12,7 +12,11 @@ interface PokemonState {
   pokemonListPerPage: PokemonDetailModel[],
   totalPerPage: number;
   search: boolean,
-  classicMode: boolean
+  classicMode: boolean,
+  nextPage: number,
+  previousPage: number,
+  totalList: number,
+  currentTotal: number,
 }
 
 const initialStatePokemonList: PokemonState = {
@@ -20,15 +24,27 @@ const initialStatePokemonList: PokemonState = {
   pokemonListPerPage: [],
   totalPerPage: 6,
   search: false,
-  classicMode: true
+  classicMode: true,
+  nextPage: 6,
+  previousPage: 0,
+  totalList: 0,
+  currentTotal: 6
 }
 
 @Injectable()
 export class PokemonsListStore extends ComponentStore<PokemonState>{
 
   pokemonList$: Observable<PokemonDetailModel[]> = this.select(state => state.pokemonListPerPage);
-  search$: Observable<boolean> = this.select(state => state.search);
+
   classicMode$: Observable<boolean> = this.select(state => state.classicMode);
+
+  totalPerPage$: Observable<number> = this.select(state => state.totalPerPage);
+
+  search$: Observable<boolean> = this.select(state => state.search);
+
+  currentTotal$: Observable<number> = this.select(state => state.currentTotal);
+
+  totalList$: Observable<number> = this.select(state => state.totalList);
 
   constructor(private service: PokemonService, private pokemonService: PokemonService, private snackBar: MatSnackBar) {
     super(initialStatePokemonList)
@@ -40,11 +56,65 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
     this.getPokemon(result?.results || []);
   }
 
-  getListPerPage() {
+  goPreviousPage() {
+    const state = this.get(s => s);
+
+    if (state.currentTotal > state.totalPerPage)
+      this.patchState(s => ({
+        ...s,
+        previousPage: state.previousPage - state.totalPerPage,
+        nextPage: state.nextPage - state.totalPerPage,
+        currentTotal: state.currentTotal - state.totalPerPage
+      }));
+
+    this.getListPerPage();
+  }
+
+  goNextPage() {
+    const state = this.get(s => s);
+    const total = state.currentTotal + state.totalPerPage;
+
+    if (state.currentTotal < state.totalList)
+      this.patchState(s => ({
+        ...s,
+        previousPage: state.previousPage + state.totalPerPage,
+        nextPage: state.currentTotal + state.totalPerPage,
+        currentTotal: total > state.totalList ? state.totalList : total
+      }));
+
+    this.getListPerPage();
+  }
+
+  addQuantity(quantity: number) {
+    const state = this.get(s => s);
+
+    if (state.totalList < quantity) {
+      this.snackBar.open('Essa opção é maior que a quantidade de resultados encontrados.', '', {
+        verticalPosition: 'top',
+        duration: 5000,
+      });
+      return;
+    }
+
     this.patchState(state => ({
       ...state,
-      pokemonListPerPage: this.get(s => s.allPokemons.slice(0, s.totalPerPage))
-    }))
+      totalPerPage: quantity,
+      nextPage: quantity,
+      previousPage: 0,
+      currentTotal: quantity
+    }));
+
+    this.getListPerPage();
+  }
+
+  getListPerPage() {
+    const state = this.get(s => s);
+
+    this.patchState(s => ({
+      ...s,
+      pokemonListPerPage: state.allPokemons.slice(state.previousPage, state.nextPage),
+      totalList: state.allPokemons.length
+    }));
   }
 
   changeTypeImage() {
@@ -67,9 +137,12 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
 
     this.patchState(state => ({
       ...state,
-      pokemonListPerPage: result,
+      totalList: result.length,
+      allPokemons: result,
       search: true
     }));
+
+    this.getListPerPage();
   }
 
   private getPokemon(list: PokemonModel[]) {
@@ -85,6 +158,9 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
       this.patchState(state => ({
         ...state,
         allPokemons: pokemons,
+        currentTotal: 6,
+        nextPage: 6,
+        previousPage: 0
       }));
 
       this.getListPerPage();

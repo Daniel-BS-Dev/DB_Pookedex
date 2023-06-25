@@ -1,47 +1,51 @@
 button {
-    border: none;
-    background: transparent;
-    color: #fff;
+  border: none;
+  background: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.inactive-button {
+  color: black;
+
+  &:hover {
+    cursor: unset;
+  }
+}
+
+.container-items-per-page {
+  width: 50px;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+
+  span {
+    font-weight: 500 !important;
+    color: #000 !important;
+    font-size: .9em;
+  }
+
+  button {
+    max-width: 100% !important;
+    min-width: 100% !important;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
-  
-  .inactive-button {
-    color: black;
-  
-    &:hover {
-      cursor: unset;
-    }
+}
+
+@media screen and (min-width: 768px) {
+  .contanier-toggle {
+    display: flex;
+    flex: 1;
   }
-  
-  .container-items-per-page {
-    width: 50px;
-    text-align: center;
-    background: #fff;
-    color: #000;
-    border-radius: 4px;
-  
-    button {
-      max-width: 100% !important;
-      min-width: 100% !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
+
+  .container-quantity-per-page {
+    max-width: 300px;
   }
-  
-  @media screen and (min-width: 768px) {
-    .contanier-toggle {
-      display: flex;
-      flex: 1;
-    }
-  
-    .container-quantity-per-page{
-      max-width: 300px;
-    }
-  
-    .contanier-paginator {
-      max-width: 180px;
-    }
+
+  .contanier-paginator {
+    max-width: 180px;
   }
+}

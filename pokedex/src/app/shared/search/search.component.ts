@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
 
   onClearField = () => {
     this.search.reset();
-    this.store.getListPerPage();
+    this.store.getList();
   }
 
   onSearchPokemon(): void {

@@ -1,0 +1,74 @@
+main {
+  background-image: url(../../../../../assets/images/background-detail.jpeg);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+  padding: 0px 2em;
+}
+
+.container-tab {
+  min-height: 55vh;
+
+  header {
+    width: 100%;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-around;
+    margin: 1em 0px;
+
+    label {
+      width: 30%;
+      text-align: center;
+      padding-bottom: 1em;
+    }
+
+    .active-tab {
+      font-weight: 700;
+      border-bottom: 2px solid #fff;
+    }
+  }
+}
+
+.sheet {
+  height: 55vh;
+}
+
+.sheet__img {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../../../../assets/images/pokeball-background-detail.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100px;
+}
+
+.sheet__tab {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px;
+  gap: 20px 0px;
+}
+
+.sheet__item_label {
+  min-width: 80px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.sheet__progress {
+  width: 100%;
+  display: flex;
+
+  app-progress-bar {
+    flex: 1;
+  }
+}
+
+::ng-deep .mat-bottom-sheet-container {
+  padding: 2px;
+  overflow: hidden;
+}

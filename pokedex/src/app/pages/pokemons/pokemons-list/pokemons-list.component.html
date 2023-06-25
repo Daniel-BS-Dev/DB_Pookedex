@@ -5,10 +5,13 @@
     <app-paginator></app-paginator>
   </section>
 
-  <article class="container-card">
-    <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon">
-    </app-card>
-  </article>
+  <section class="d-flex justify-content-center mb-2 mt-1">
+    <article class="container-card">
+      <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon"
+        (click)="pokedexListStore.onGetDetail(pokemon)">
+      </app-card>
+    </article>
+  </section>
 
   <footer>
     <small>&copy;

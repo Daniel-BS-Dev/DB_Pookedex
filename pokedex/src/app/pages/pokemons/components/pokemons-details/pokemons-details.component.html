@@ -1,0 +1,71 @@
+<main>
+  <div class="sheet__img">
+    <img appHasErrorImage *ngIf="classicMode" [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
+    <img appHasErrorImage *ngIf="!classicMode"
+      src="https://projectpokemon.org/images/normal-sprite/{{pokemon.name}}.gif" [alt]="pokemon.name">
+  </div>
+
+  <article class="container-tab">
+    <header>
+      <label *ngFor="let tab of tabsName" [class.active-tab]="activeTab === tab" (click)="activeTab = tab">
+        {{ tab }}
+      </label>
+    </header>
+
+    <section *ngIf="activeTab === tabsName[0]" class="sheet__tab">
+      <article class="sheet__progress">
+        <span class="sheet__item_label">HP:</span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[5].base_stat">
+        </app-progress-bar>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Ataque: </span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[4].base_stat">
+        </app-progress-bar>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Defesa:</span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[3].base_stat">
+        </app-progress-bar>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Sp. Ataque:</span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[2].base_stat">
+        </app-progress-bar>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Sp. Defesa:</span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[1].base_stat">
+        </app-progress-bar>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Velocidade:</span>
+        <app-progress-bar [color]="getPrincipalType(pokemon.types)" [value]="pokemon.stats[0].base_stat">
+        </app-progress-bar>
+      </article>
+    </section>
+
+    <section *ngIf="activeTab === tabsName[1]" class="sheet__tab">
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Altura:</span>
+        <span class="sheet__item_label">{{pokemon.height}}</span>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Peso:</span>
+        <span class="sheet__item_label">{{pokemon.weight}}</span>
+      </article>
+
+      <article class="sheet__progress">
+        <span class="sheet__item_label">Habilidades:</span>
+        <span class="sheet__item_label">{{ getAbilities() }}</span>
+      </article>
+    </section>
+  </article>
+
+</main>

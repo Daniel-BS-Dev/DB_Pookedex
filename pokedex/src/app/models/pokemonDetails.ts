@@ -14,7 +14,9 @@ export interface PokemonDetailModel {
 }
 
 interface Ability {
-  ability: string;
+  ability: {
+    name: string
+  };
 }
 
 interface Species {

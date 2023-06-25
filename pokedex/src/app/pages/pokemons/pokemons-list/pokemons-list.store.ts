@@ -6,6 +6,8 @@ import { PokemonService } from "src/app/services/pokemon.service";
 import { handleAsync } from 'src/app/utils/handleAsync';
 import { PokemonDetailModel } from 'src/app/models/pokemonDetails';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { PokemonsDetailsComponent } from '../components/pokemons-details/pokemons-details.component';
 
 interface PokemonState {
   allPokemons: PokemonDetailModel[],
@@ -46,12 +48,12 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
 
   totalList$: Observable<number> = this.select(state => state.totalList);
 
-  constructor(private service: PokemonService, private pokemonService: PokemonService, private snackBar: MatSnackBar) {
+  constructor(private service: PokemonService, private bottomSheet: MatBottomSheet, private snackBar: MatSnackBar) {
     super(initialStatePokemonList)
   }
 
   async getList() {
-    const [result, _] = await handleAsync(this.service.getPokemonList(0, 20000000));
+    const [result, _] = await handleAsync(this.service.getPokemonList(0, 1));
 
     this.getPokemon(result?.results || []);
   }
@@ -143,6 +145,12 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
     }));
 
     this.getListPerPage();
+  }
+
+  onGetDetail(pokemon: PokemonDetailModel) {
+    this.bottomSheet.open(PokemonsDetailsComponent, {
+      data: { pokemon, classicMode: this.get(s => s.classicMode) }
+    })
   }
 
   private getPokemon(list: PokemonModel[]) {

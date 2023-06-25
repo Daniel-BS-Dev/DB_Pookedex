@@ -8,15 +8,9 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 
-  .container-list-pokemon {
-    width: 100%;
-    max-width: 1200px;
-    min-height: 100vh;
-    padding: 0px 5%;
-  }
-
   .container-card {
     width: 100%;
+    max-width: 1600px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

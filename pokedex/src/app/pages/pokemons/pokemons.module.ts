@@ -10,19 +10,21 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { CardComponent } from './components/card/card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PokemonsDetailsComponent } from './components/pokemons-details/pokemons-details.component';
 
 @NgModule({
+  declarations: [
+    PokemonsListComponent,
+    HeaderComponent,
+    CardComponent,
+    PaginatorComponent,
+    PokemonsDetailsComponent
+  ],
   imports: [
     CommonModule,
     PokemonsRoutingModule,
     HttpClientModule,
     SharedModule,
-  ],
-  declarations: [
-    PokemonsListComponent,
-    HeaderComponent,
-    CardComponent,
-    PaginatorComponent
   ],
   providers: [
     PokemonService

@@ -11,6 +11,7 @@ import { CardComponent } from './components/card/card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonsDetailsComponent } from './components/pokemons-details/pokemons-details.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PokemonsDetailsComponent } from './components/pokemons-details/pokemons
     HeaderComponent,
     CardComponent,
     PaginatorComponent,
-    PokemonsDetailsComponent
+    PokemonsDetailsComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

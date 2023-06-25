@@ -1,17 +1,26 @@
 <main>
-  <section class="container mb-2 mt-1">
+  <section class="container" *ngIf="(pokedexListStore.loading$ | async)">
     <app-header></app-header>
-    <app-search [store]="pokedexListStore"></app-search>
-    <app-paginator></app-paginator>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+      <app-loading></app-loading>
+    </div>
   </section>
 
-  <section class="d-flex justify-content-center mb-2 mt-1">
-    <article class="container-card">
-      <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon"
-        (click)="pokedexListStore.onGetDetail(pokemon)">
-      </app-card>
-    </article>
-  </section>
+  <div *ngIf="!(pokedexListStore.loading$ | async)">
+    <section class="container">
+      <app-header></app-header>
+      <app-search [store]="pokedexListStore"></app-search>
+      <app-paginator></app-paginator>
+    </section>
+
+    <section class="d-flex justify-content-center mb-2 mt-1">
+      <article class="container-card">
+        <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon"
+          (click)="pokedexListStore.onGetDetail(pokemon)">
+        </app-card>
+      </article>
+    </section>
+  </div>
 
   <footer>
     <small>&copy;

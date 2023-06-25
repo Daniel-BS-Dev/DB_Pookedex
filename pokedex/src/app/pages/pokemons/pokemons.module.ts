@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { PokemonsRoutingModule } from './pokemons-list-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -15,12 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     PokemonsRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     PokemonsListComponent,
     HeaderComponent,
-    CardComponent
+    CardComponent,
+    PaginatorComponent
   ],
   providers: [
     PokemonService

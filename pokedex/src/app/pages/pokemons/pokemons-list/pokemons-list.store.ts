@@ -11,7 +11,8 @@ interface PokemonState {
   allPokemons: PokemonDetailModel[],
   pokemonListPerPage: PokemonDetailModel[],
   totalPerPage: number;
-  search: boolean
+  search: boolean,
+  classicMode: boolean
 }
 
 const initialStatePokemonList: PokemonState = {
@@ -19,6 +20,7 @@ const initialStatePokemonList: PokemonState = {
   pokemonListPerPage: [],
   totalPerPage: 6,
   search: false,
+  classicMode: true
 }
 
 @Injectable()
@@ -26,6 +28,7 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
 
   pokemonList$: Observable<PokemonDetailModel[]> = this.select(state => state.pokemonListPerPage);
   search$: Observable<boolean> = this.select(state => state.search);
+  classicMode$: Observable<boolean> = this.select(state => state.classicMode);
 
   constructor(private service: PokemonService, private pokemonService: PokemonService, private snackBar: MatSnackBar) {
     super(initialStatePokemonList)
@@ -42,6 +45,13 @@ export class PokemonsListStore extends ComponentStore<PokemonState>{
       ...state,
       pokemonListPerPage: this.get(s => s.allPokemons.slice(0, s.totalPerPage))
     }))
+  }
+
+  changeTypeImage() {
+    this.patchState(state => ({
+      ...state,
+      classicMode: this.get(s => !s.classicMode)
+    }));
   }
 
   async onAddSearch(search: string) {

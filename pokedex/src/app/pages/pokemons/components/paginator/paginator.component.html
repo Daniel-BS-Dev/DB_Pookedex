@@ -1,0 +1,35 @@
+<section class="pt-2 d-md-flex justify-content-between">
+    <article class="col-12 mt-md-0 d-flex flex-wrap flex-md-nowrap align-items-center justify-content-between color-white fw-bold">
+      <h4 class="contanier-toggle m-0 color-white text-uppercase fw-bold">
+        {{(store.classicMode$ | async) ? 'normal' : 'Gif'}}
+        <mat-slide-toggle class="ms-md-2" color="accont" (change)="changeTypeImage()">
+        </mat-slide-toggle>
+      </h4>
+      <div class="container-quantity-per-page py-2 py-md-0 d-flex align-items-center justify-content-between me-md-4">
+        <h5 class="m-0 fw-bold me-2">Itens por página:</h5>
+        <div class="container-items-per-page">
+          <button mat-button [matMenuTriggerFor]="menu">
+            <span class="text-black fw-bold">
+              {{ quantityPokemonPage }}
+            </span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button class="text-black fw-bold" mat-menu-item *ngFor="let option of options" (click)="addQuantity(option.value)">
+              {{ option.value < 12 ? '0' + option.value : option.value }} </button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="contanier-paginator col-12 pt-4 pt-md-0 d-flex align-items-center justify-content-between">
+        <button matTooltipPosition="above" matTooltip="Página anterior" [disabled]="currentTotal <= pokemonList"
+          [class.inactive-button]="currentTotal <= pokemonList">
+          <mat-icon (click)="goPreviousPage()">arrow_back_ios</mat-icon>
+        </button>
+        <span class="pe-2">
+          {{ total ? listTotal : currentTotal }} de {{ listTotal }}
+        </span>
+        <button [disabled]="total" [class.inactive-button]="total" matTooltipPosition="above" matTooltip="Próxima página">
+          <mat-icon (click)="goNextPage()">arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </article>
+  </section>

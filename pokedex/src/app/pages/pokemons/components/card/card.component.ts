@@ -13,6 +13,10 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
+  get mensageTooltip() {
+    return `Clique para ver mais informações sobre ${this.pokemon.name}.`;
+  }
+
   getPrincipalType = (list: any) =>
     list?.filter((x: any) => x.slot === 1)[0]?.type.name;
 

@@ -1,5 +1,8 @@
 <main>
-  <app-header></app-header>
+  <section class="container mb-3 mt-1">
+    <app-header></app-header>
+    <app-search [store]="pokedexListStore"></app-search>
+  </section>
 
   <article class="container-card">
     <app-card *ngFor="let pokemon of (pokedexListStore.pokemonList$ | async)" [pokemon]="pokemon">

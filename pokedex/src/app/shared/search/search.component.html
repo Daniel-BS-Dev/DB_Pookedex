@@ -1,0 +1,7 @@
+<article class="container-search">
+    <input matInput class="form-control" [formControl]="search" (keydown.enter)="onSearchPokemon()"
+      placeholder="Encontrar pokemon...">
+    {{(store.search$ | async)}}
+    <mat-icon class="icon" *ngIf="(store.search$ | async)" (click)="onClearField()">clear</mat-icon>
+    <mat-icon class="icon" *ngIf="!(store.search$ | async)" (click)="onSearchPokemon()">search</mat-icon>
+</article>

@@ -1,0 +1,22 @@
+.container-search {
+    width: 100%;
+    position: relative;
+
+    input::placeholder{
+      color: #0a7abc;
+      font-weight: 900;
+    }
+
+    .icon {
+      position: absolute;
+      z-index: 10;
+      font-weight: bolder;
+      top: 8px;
+      right: 10px;
+      color: #0a7abc;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+}

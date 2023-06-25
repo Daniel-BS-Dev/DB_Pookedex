@@ -12,7 +12,7 @@ export class PokemonsListComponent {
   constructor(public pokedexListStore: PokemonsListStore) { }
 
   ngOnInit(): void {
-   this.pokedexListStore.getPokemonsList();
+   this.pokedexListStore.getList();
   }
 
 }

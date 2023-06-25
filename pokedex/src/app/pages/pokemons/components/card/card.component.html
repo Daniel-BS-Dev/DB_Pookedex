@@ -1,5 +1,8 @@
-<section class="card {{'bg-color-'+ getPrincipalType(pokemon.types) + '-light'}}" matTooltipPosition="above"
-  matTooltip="Clique para ver detalhes.">
+<section
+  class="card {{'bg-color-'+ getPrincipalType(pokemon.types) + '-light'}}"
+  matTooltipPosition="above"
+  [matTooltip]="mensageTooltip"
+>
 
   <article class="cardinfo">
     <p class="mb-5">{{ pokemon.name }}</p>
